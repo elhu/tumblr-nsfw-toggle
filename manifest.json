@@ -9,9 +9,5 @@
     "matches": ["https://www.tumblr.com/dashboard"],
     "js": ["scripts/nsfw_toggle.js"],
     "run_at": "document_end"
-  }],
-
-  "web_accessible_resources": [
-    "images/evil2.png"
-  ]
+  }]
 }
