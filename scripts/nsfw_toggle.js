@@ -19,17 +19,30 @@ userTools.appendChild(toggleDiv);
 // Preparing the style to hide NSFW elements
 var style = document.createElement('style');
 style.type = 'text/css';
-style.id = "tumblr-nsfw-toggle-style";
+style.id = 'tumblr-nsfw-toggle-style';
 style.appendChild(document.createTextNode('div.post[data-tumblelog-content-rating="nsfw"] .post_media img, div.post[data-tumblelog-content-rating="adult"] .post_media img { visibility: hidden; }'));
+
+function hideNSFWContent() {
+  toggleIcon.style.color = '#fff';
+  document.getElementsByTagName('head')[0].appendChild(style);
+  chrome.storage.local.set({'inUse': true});
+}
+
+// Handle stored state
+chrome.storage.local.get('inUse', function(items) {
+  if (items['inUse'] == true) {
+    hideNSFWContent();
+  }
+});
 
 // Handling the actual toggle
 toggleDiv.addEventListener('click', function() {
-  var styleElt = document.getElementById("tumblr-nsfw-toggle-style");
+  var styleElt = document.getElementById('tumblr-nsfw-toggle-style');
   if (styleElt == null) {
-    toggleIcon.style.color = "#fff";
-    document.getElementsByTagName('head')[0].appendChild(style);
+    hideNSFWContent();
   } else {
-    toggleIcon.style.color = "rgba(255,255,255,.5)";
+    toggleIcon.style.color = 'rgba(255,255,255,.5)';
     styleElt.parentNode.removeChild(styleElt);
+    chrome.storage.local.remove('inUse');
   }
 });

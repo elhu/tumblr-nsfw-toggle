@@ -9,5 +9,9 @@
     "matches": ["https://www.tumblr.com/dashboard"],
     "js": ["scripts/nsfw_toggle.js"],
     "run_at": "document_end"
-  }]
+  }],
+
+  "permissions": [
+    "storage"
+  ]
 }
