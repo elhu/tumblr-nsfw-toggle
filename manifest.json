@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+
+  "name": "Tumblr NSFW Toggle",
+  "description": "This extension provides a simple switch to hide/show NSFW posts on Tumblr",
+  "version": "0.1",
+
+  "content_scripts": [{
+    "matches": ["https://www.tumblr.com/dashboard"],
+    "js": ["scripts/nsfw_toggle.js"],
+    "run_at": "document_end"
+  }],
+
+  "web_accessible_resources": [
+    "images/evil2.png"
+  ]
+}
