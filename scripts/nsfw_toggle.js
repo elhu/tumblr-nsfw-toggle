@@ -17,14 +17,26 @@ toggleDiv.appendChild(toggleIcon);
 userTools.appendChild(toggleDiv);
 
 // Preparing the style to hide NSFW elements
-var style = document.createElement('style');
-style.type = 'text/css';
-style.id = 'tumblr-nsfw-toggle-style';
-style.appendChild(document.createTextNode('div.post[data-tumblelog-content-rating="nsfw"] .post_media img, div.post[data-tumblelog-content-rating="adult"] .post_media img { visibility: hidden; }'));
+var styleNode = document.createElement('style');
+styleNode.type = 'text/css';
+styleNode.id = 'tumblr-nsfw-toggle-style';
+
+var style = '\
+div.post[data-tumblelog-content-rating="nsfw"] .post_media img, div.post[data-tumblelog-content-rating="adult"] .post_media img {\
+ visibility: hidden;\
+}\
+div.post[data-tumblelog-content-rating="nsfw"] .post_body, div.post[data-tumblelog-content-rating="adult"] .post_body {\
+ color: #fff;\
+}\
+div.post[data-tumblelog-content-rating="nsfw"] .post_body .note_item, div.post[data-tumblelog-content-rating="adult"] .post_body  .note_item {\
+ color: #f5f5f5;\
+}'
+
+styleNode.appendChild(document.createTextNode(style));
 
 function hideNSFWContent() {
   toggleIcon.style.color = '#fff';
-  document.getElementsByTagName('head')[0].appendChild(style);
+  document.getElementsByTagName('head')[0].appendChild(styleNode);
 }
 
 // Handle stored state

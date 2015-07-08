@@ -1,3 +1,2 @@
-* Add README
-* Package/Publish extension
-* Check on != resolutions
+* Handle videos
+* Package extension
