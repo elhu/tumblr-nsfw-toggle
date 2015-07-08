@@ -25,7 +25,6 @@ style.appendChild(document.createTextNode('div.post[data-tumblelog-content-ratin
 function hideNSFWContent() {
   toggleIcon.style.color = '#fff';
   document.getElementsByTagName('head')[0].appendChild(style);
-  chrome.storage.local.set({'inUse': true});
 }
 
 // Handle stored state
@@ -40,6 +39,7 @@ toggleDiv.addEventListener('click', function() {
   var styleElt = document.getElementById('tumblr-nsfw-toggle-style');
   if (styleElt == null) {
     hideNSFWContent();
+    chrome.storage.local.set({'inUse': true});
   } else {
     toggleIcon.style.color = 'rgba(255,255,255,.5)';
     styleElt.parentNode.removeChild(styleElt);
